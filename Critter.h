@@ -11,6 +11,8 @@ class Critter
    //           BEHAVIOUR
   // ----------------------------------
 
+
+
 public:
 
 	// Constructor
@@ -28,6 +30,10 @@ public:
 	// clear the pending score 
 
 	void  ClearPendingScore();
+
+	// set the critter type
+	void Setup(std::string _textureFile, int _pointValue);
+
 
 
 	// --------------------------------
@@ -47,6 +53,7 @@ private:
 	sf::Sound m_deathSound;
 	sf::SoundBuffer m_deathBuffer;
 	int m_pendingScore;
+	int m_scoreValue;
 
 	// --------------------------------
    //            END DATA
