@@ -17,6 +17,7 @@ Critter::Critter()
 	, m_alive(true)
 	, m_deathSound()
 	, m_deathBuffer()
+	, m_pendingScore(0)
 
 {
 	// Set up the sprite 
@@ -50,7 +51,7 @@ void Critter::Input(sf::Event _gameEvent)
 		if (_gameEvent.type == sf::Event::MouseButtonPressed)
 		{
 
-			// Did they click on this critter
+			// Did they click on this critter?
 			if (m_sprite.getGlobalBounds().contains(_gameEvent.mouseButton.x, _gameEvent.mouseButton.y))
 			{
 				// They clicked it!
@@ -61,12 +62,22 @@ void Critter::Input(sf::Event _gameEvent)
 				// Play the death sound
 				m_deathSound.play();
 
+				// Add to pending scpre
+				m_pendingScore += 1;
+
 
 			}
 
 		} // end event clicked
 	}
+}
 
+int Critter::GetPendingScore()
+{
+	return m_pendingScore;
+}
 
-	
+void Critter::ClearPendingScore()
+{
+	m_pendingScore = 0;
 }

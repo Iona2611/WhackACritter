@@ -5,7 +5,8 @@
 // libraries
 #include <SFML/Graphics.hpp>
 #include<cstdlib> // gives access to random function	
-#include<ctime> // gives accrss to time functions
+#include<ctime> // gives access to time functions
+#include<string> // gives access to string functions
 
 // Project Includes
 #include"Critter.h"
@@ -32,6 +33,19 @@ int main()
 
 	// Create an instance of our critter class
 	Critter myCriiter;
+
+	// Game font
+	sf::Font gameFont;
+	gameFont.loadFromFile("fonts/mainFont.ttf");
+
+	// Score tracking 
+	int score = 0;
+	sf::Text scoreText;
+	scoreText.setFont(gameFont);
+	scoreText.setString("Score: " + std::to_string(score));
+	scoreText.setCharacterSize(50);
+	scoreText.setFillColor(sf::Color::Cyan);
+	scoreText.setPosition(50, 50);
 
 	
 
@@ -70,6 +84,12 @@ int main()
 		
 		sf::Time frameTime = gameClock.restart();
 
+		// See if there is any pending score 
+		score += myCriiter.GetPendingScore();
+		myCriiter.ClearPendingScore();
+		scoreText.setString("Score: " + std::to_string(score));
+
+
 		// --------------------------------
        //        END UPDATE
       // ---------------------------------
@@ -83,6 +103,7 @@ int main()
 		
 		// draw everything
 		myCriiter.Draw(gameWindow);
+		gameWindow.draw(scoreText);
 
 		// display the window contents 
 
