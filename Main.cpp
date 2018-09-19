@@ -1,22 +1,71 @@
 #include <SFML/Graphics.hpp>
-int main()
-{
-	sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-	sf::CircleShape shape(100.f);
-	shape.setFillColor(sf::Color::Green);
 
-	while (window.isOpen())
+// --------------------------------
+//Includes 
+// ---------------------------------
+
+// libraries
+
+
+
+
+int main()
+
+{
+	// game setup 
+
+	// Render window creation 
+
+	
+
+	sf::RenderWindow gameWindow;
+	gameWindow.create(sf::VideoMode::getDesktopMode(), "Quick Draw",
+		sf::Style::Titlebar | sf::Style::Close);
+	
+	// Timer Functioality 
+	sf::Clock gameClock;
+
+	// end game set up
+
+	// game loop 
+
+	while (gameWindow.isOpen())
+
+		// input
 	{
 		sf::Event event;
-		while (window.pollEvent(event))
+		while (gameWindow.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		window.clear();
-		window.draw(shape);
-		window.display();
-	}
+			{
+				gameWindow.close();
 
+			} // end if closed 
+		} // end event polling loop 
+
+
+		// end of input
+
+		// Update 
+		sf::Time frameTime = gameClock.restart();
+
+		// end update 
+
+		// draw
+
+		// clear the window to a single colour
+	    gameWindow.clear();
+		
+		// draw everything
+
+		// display the window contents 
+
+		gameWindow.display();
+
+		// end draw
+	} // end of the game while loop 
+
+	// exit point for the program
 	return 0;
-}
+
+} // end of the main() function
