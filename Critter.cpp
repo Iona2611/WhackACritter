@@ -1,8 +1,14 @@
 // --------------------------------
 // Includes 
 // ---------------------------------
+
+// Library Includes
+#include<cstdlib>
+
 // Project Includes
+
 #include "Critter.h"
+
 
 Critter::Critter()
 // initialisation list 
@@ -12,7 +18,8 @@ Critter::Critter()
 	// Set up the sprite 
 	m_texture.loadFromFile("graphics/bear.png");
 	m_sprite.setTexture(m_texture);
-	m_sprite.setPosition(300, 300);
+	m_sprite.setPosition(rand() % sf::VideoMode::getDesktopMode().width,
+		                 rand() % sf::VideoMode::getDesktopMode().height);
 
 }
 
