@@ -1,11 +1,14 @@
-#include <SFML/Graphics.hpp>
+
 
 // --------------------------------
 //Includes 
 // ---------------------------------
 
 // libraries
+#include <SFML/Graphics.hpp>
 
+// Project Includes
+#include"Critter.h"
 
 
 
@@ -25,13 +28,18 @@ int main()
 	// Timer Functioality 
 	sf::Clock gameClock;
 
-	// end game set up
+	// Create an instance of our critter class
+	Critter myCriiter;
+
+	
 
 	// game loop 
 
 	while (gameWindow.isOpen())
 
-		// input
+		// --------------------------------
+       //           INPUT
+      // ---------------------------------
 	{
 		sf::Event event;
 		while (gameWindow.pollEvent(event))
@@ -44,25 +52,39 @@ int main()
 		} // end event polling loop 
 
 
-		// end of input
+	    // --------------------------------
+	   //          END INPUT
+	  // ---------------------------------
+		
+	    // --------------------------------
+	   //          UPDATE
+	  // ---------------------------------
 
-		// Update 
+		
 		sf::Time frameTime = gameClock.restart();
 
-		// end update 
+		// --------------------------------
+       //        END UPDATE
+      // ---------------------------------
 
-		// draw
+	    // --------------------------------
+	   //          DRAW
+	  // ---------------------------------
 
 		// clear the window to a single colour
 	    gameWindow.clear();
 		
 		// draw everything
+		myCriiter.Draw(gameWindow);
 
 		// display the window contents 
 
 		gameWindow.display();
 
-		// end draw
+		// --------------------------------
+       //          END DRAW
+      // ---------------------------------
+
 	} // end of the game while loop 
 
 	// exit point for the program
