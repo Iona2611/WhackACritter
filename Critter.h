@@ -1,6 +1,7 @@
 #pragma once
 // includes
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class Critter
 {
@@ -18,6 +19,9 @@ public:
 	// Render the critter to the target
 	void Draw(sf::RenderTarget & _target);
 
+	// Process input on the critter
+	void Input(sf::Event _gameEvent);
+
 
 	// --------------------------------
    //          END BEHAVIOUR
@@ -32,6 +36,9 @@ private:
 
 	sf::Sprite m_sprite;
 	sf::Texture m_texture;
+	bool m_alive;
+	sf::Sound m_deathSound;
+	sf::SoundBuffer m_deathBuffer;
 
 	// --------------------------------
    //            END DATA
