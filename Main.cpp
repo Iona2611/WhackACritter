@@ -32,10 +32,15 @@ int main()
 	srand(time(NULL));
 
 	// Create an instance of our critter class
-	Critter myCritter;
-	myCritter.Setup("graphics/bear.png",10);
-	Critter secondCritter;
-	secondCritter.Setup("graphics/sloth.png", 5);
+	
+
+	const int NUM_CRITTERS = 5;
+	Critter critters[NUM_CRITTERS];
+	critters[0].Setup("graphics/bear.png", 10);
+	critters[1].Setup("graphics/sloth.png", 5);
+	critters[2].Setup("graphics/panda.png", 25);
+	critters[3].Setup("graphics/chicken.png", 100);
+	critters[4].Setup("graphics/giraffe.png", 2);
 
 	// Game font
 	sf::Font gameFont;
@@ -64,9 +69,11 @@ int main()
 		while (gameWindow.pollEvent(event))
 		{
 			// Process input on critters 
-			myCritter.Input(event);
-			secondCritter.Input(event);
-
+			
+			for (int i = 0; i < NUM_CRITTERS; ++i)
+			{
+				critters[i].Input(event);
+			}
 
 
 			if (event.type == sf::Event::Closed)
@@ -79,23 +86,26 @@ int main()
 
 	    // --------------------------------
 	   //          END INPUT
-	  // ---------------------------------
+	  // ----------------------------------
 		
 	    // --------------------------------
 	   //          UPDATE
-	  // ---------------------------------
+	  // ----------------------------------
 
 		
 		sf::Time frameTime = gameClock.restart();
 
 		// See if there is any pending score 
-		score += myCritter.GetPendingScore();
-		myCritter.ClearPendingScore();
-		scoreText.setString("Score: " + std::to_string(score));
+		
+		
 
-		// second critter
-		score += secondCritter.GetPendingScore();
-		secondCritter.ClearPendingScore();
+		for (int i = 0; i < NUM_CRITTERS; ++i)
+		{
+			score += critters[i].GetPendingScore();
+			critters[i].ClearPendingScore();
+		}
+
+		scoreText.setString("Score: " + std::to_string(score));
 
 
 		// --------------------------------
@@ -110,8 +120,13 @@ int main()
 	    gameWindow.clear();
 		
 		// draw everything
-		myCritter.Draw(gameWindow);
-		secondCritter.Draw(gameWindow);
+
+		for (int i = 0; i < NUM_CRITTERS; ++i)
+		{
+			
+			critters[i].Draw(gameWindow);
+		}
+
 		gameWindow.draw(scoreText);
 
 		// display the window contents 
